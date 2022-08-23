@@ -16,6 +16,31 @@
 #import "SVGAAudioLayer.h"
 #import "SVGAAudioEntity.h"
 
+
+@interface UIImage (SVGAPlayer)
++ (UIImage *)svga_safeImageWithData:(NSData *)data;
+@end
+
+static NSLock* imageLock = nil;
+
+@implementation UIImage (SVGAPlayer)
+
++ (UIImage *)svga_safeImageWithData:(NSData *)data {
+    UIImage* image = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        imageLock = [[NSLock alloc] init];
+    });
+    
+    [imageLock lock];
+    image = [UIImage imageWithData:data];
+    [imageLock unlock];
+    return image;
+}
+
+@end
+
+
 @interface SVGAPlayer ()
 
 @property (nonatomic, strong) CALayer *drawLayer;
@@ -440,7 +465,7 @@
 - (void)setImageWithURL:(NSURL *)URL forKey:(NSString *)aKey {
     [[[NSURLSession sharedSession] dataTaskWithURL:URL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (error == nil && data != nil) {
-            UIImage *image = [UIImage imageWithData:data];
+            UIImage *image = [UIImage svga_safeImageWithData:data];
             if (image != nil) {
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                     [self setImage:image forKey:aKey];
