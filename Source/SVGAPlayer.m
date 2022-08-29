@@ -34,11 +34,11 @@ static NSLock* imageLock = nil;
     });
     
     CGImageSourceRef source = CGImageSourceCreateWithData((__bridge CFDataRef)data, NULL);
-    if (!source) {
+    size_t count = CGImageSourceGetCount(source);
+    if (!source || count == 0) {
         return nil;
     }
-//    size_t count = CGImageSourceGetCount(source);
-    
+
     [imageLock lock];
     image = [SVGAImageIOCoder createFrameAtIndex:0 source:source scale:1 preserveAspectRatio:YES thumbnailSize:CGSizeMake(0, 0) options:nil];
     [imageLock unlock];
