@@ -32,15 +32,8 @@ static NSLock* imageLock = nil;
     dispatch_once(&onceToken, ^{
         imageLock = [[NSLock alloc] init];
     });
-    
-    CGImageSourceRef source = CGImageSourceCreateWithData((__bridge CFDataRef)data, NULL);
-    size_t count = CGImageSourceGetCount(source);
-    if (!source || count == 0) {
-        return nil;
-    }
-
     [imageLock lock];
-    image = [SVGAImageIOCoder createFrameAtIndex:0 source:source scale:1 preserveAspectRatio:YES thumbnailSize:CGSizeMake(0, 0) options:nil];
+    image = [SVGAImageIOCoder decode:data scale:1 options:nil];
     [imageLock unlock];
     return image;
 }
