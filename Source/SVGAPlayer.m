@@ -15,6 +15,7 @@
 #import "SVGAVectorLayer.h"
 #import "SVGAAudioLayer.h"
 #import "SVGAAudioEntity.h"
+#import "SVGAImageIOCoder.h"
 
 
 @interface UIImage (SVGAPlayer)
@@ -32,8 +33,14 @@ static NSLock* imageLock = nil;
         imageLock = [[NSLock alloc] init];
     });
     
+    CGImageSourceRef source = CGImageSourceCreateWithData((__bridge CFDataRef)data, NULL);
+    if (!source) {
+        return nil;
+    }
+//    size_t count = CGImageSourceGetCount(source);
+    
     [imageLock lock];
-    image = [UIImage imageWithData:data];
+    image = [SVGAImageIOCoder createFrameAtIndex:0 source:source scale:1 preserveAspectRatio:YES thumbnailSize:CGSizeMake(0, 0) options:nil];
     [imageLock unlock];
     return image;
 }
@@ -464,7 +471,7 @@ static NSLock* imageLock = nil;
 
 - (void)setImageWithURL:(NSURL *)URL forKey:(NSString *)aKey {
     [[[NSURLSession sharedSession] dataTaskWithURL:URL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        if (error == nil && data != nil) {
+        if (error == nil && data != nil && data.length > 0) {
             UIImage *image = [UIImage svga_safeImageWithData:data];
             if (image != nil) {
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{

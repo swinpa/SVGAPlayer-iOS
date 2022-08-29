@@ -39,6 +39,7 @@
 		90D7CA1C1F7FB114006E74F0 /* rose_1.5.0.svga in Resources */ = {isa = PBXBuildFile; fileRef = 90D7CA1A1F7FB114006E74F0 /* rose_1.5.0.svga */; };
 		90D7CA1E1F7FB34E006E74F0 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 90D7CA1D1F7FB34E006E74F0 /* libz.tbd */; };
 		90DB59B51F96026E00894727 /* SVGAImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DB59B41F96026E00894727 /* SVGAImageView.m */; };
+		C911E41428B8BD1E00DCA0BD /* SVGAImageIOCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = C911E41228B8BD1E00DCA0BD /* SVGAImageIOCoder.m */; };
 		E83A58D9247E0E6A00D9F404 /* audio_biling.svga in Resources */ = {isa = PBXBuildFile; fileRef = E83A58D8247E0E6A00D9F404 /* audio_biling.svga */; };
 /* End PBXBuildFile section */
 
@@ -95,6 +96,8 @@
 		90D7CA1D1F7FB34E006E74F0 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		90DB59B31F96026E00894727 /* SVGAImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVGAImageView.h; sourceTree = "<group>"; };
 		90DB59B41F96026E00894727 /* SVGAImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SVGAImageView.m; sourceTree = "<group>"; };
+		C911E41228B8BD1E00DCA0BD /* SVGAImageIOCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVGAImageIOCoder.m; sourceTree = "<group>"; };
+		C911E41328B8BD1E00DCA0BD /* SVGAImageIOCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVGAImageIOCoder.h; sourceTree = "<group>"; };
 		E02B8713B25C0283C736EE03 /* Pods-SVGAPlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SVGAPlayer.release.xcconfig"; path = "Pods/Target Support Files/Pods-SVGAPlayer/Pods-SVGAPlayer.release.xcconfig"; sourceTree = "<group>"; };
 		E83A58D8247E0E6A00D9F404 /* audio_biling.svga */ = {isa = PBXFileReference; lastKnownFileType = file; path = audio_biling.svga; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -170,6 +173,8 @@
 			isa = PBXGroup;
 			children = (
 				90D7CA081F7E2D4D006E74F0 /* pbobjc */,
+				C911E41328B8BD1E00DCA0BD /* SVGAImageIOCoder.h */,
+				C911E41228B8BD1E00DCA0BD /* SVGAImageIOCoder.m */,
 				90A676F81D13A81F008A69F3 /* SVGA.h */,
 				90A676F91D13A81F008A69F3 /* SVGA.m */,
 				90A676FB1D13A82A008A69F3 /* SVGAParser.h */,
@@ -268,7 +273,7 @@
 				TargetAttributes = {
 					90A676DC1D13A6DF008A69F3 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = S2RM275849;
+						DevelopmentTeam = F99G8Z3NCL;
 					};
 				};
 			};
@@ -355,6 +360,7 @@
 				90A676FA1D13A81F008A69F3 /* SVGA.m in Sources */,
 				90A677061D13BF77008A69F3 /* SVGAPlayer.m in Sources */,
 				90A364D41E5AEC1C009347F1 /* SVGAVectorLayer.m in Sources */,
+				C911E41428B8BD1E00DCA0BD /* SVGAImageIOCoder.m in Sources */,
 				90D7CA161F7FA07A006E74F0 /* Svga.pbobjc.m in Sources */,
 				90A676E21D13A6DF008A69F3 /* main.m in Sources */,
 				90A676FD1D13A82A008A69F3 /* SVGAParser.m in Sources */,
@@ -471,7 +477,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = S2RM275849;
+				DEVELOPMENT_TEAM = F99G8Z3NCL;
 				INFOPLIST_FILE = SVGAPlayer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -488,7 +494,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = S2RM275849;
+				DEVELOPMENT_TEAM = F99G8Z3NCL;
 				INFOPLIST_FILE = SVGAPlayer/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
